@@ -2,14 +2,6 @@ import Data.List
 import Data.Char
 import Data.Monoid
 
---  Constants
-
-codedMessage :: String
-codedMessage = "List(Map(x  ->  2, y  ->  0,  v  ->  x), Map(x ->   0, y ->   1, v  -> o), Map(x -> 2,   y -> 2,  v  ->  x), Map(x ->   1, y   -> 0,  v ->   o),  Map(x   ->  1, y  ->   2, v ->   x))"
-
-decodedMessage :: String
-decodedMessage = removeFirstAndLastLetter (removeScalaCharacterFromString codedMessage)
-
 
 --  Recieve input form console. (apparently not needed, ignore for now)
 validateTicTacToeGame :: IO String
@@ -70,10 +62,6 @@ parseMovementsStringToTuple :: [Char] -> [(Int, Int, Char)]   -- Possible to (ta
 parseMovementsStringToTuple [] = []
 parseMovementsStringToTuple ('(':'x':x:',':'y':y:',':'v':v:')':rest) = ((digitToInt x, digitToInt y, v) : (parseMovementsStringToTuple rest))
 parseMovementsStringToTuple (',':'(':'x':x:',':'y':y:',':'v':v:')':rest) = ((digitToInt x, digitToInt y, v) : (parseMovementsStringToTuple rest))
-
-
-getMovementsFromDecodedMessage :: [(Int, Int, Char)]
-getMovementsFromDecodedMessage = parseMovementsStringToTuple decodedMessage
 
 
 --  Remove scala words
